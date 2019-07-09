@@ -1,0 +1,10 @@
+Name: Wikipedia Lookup
+Description: Look for a word in Wikipedia
+Binding: wikipedia_lookup
+Interactive: false
+
+Name: Insert Cat
+Description: Inserts a random cat picture in a markdown
+Binding: insert_cat
+Interactive: false
+
