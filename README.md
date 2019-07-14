@@ -22,3 +22,6 @@ __Coffee Break: 10h30 - 11h00__
 
 + [Connections](part4.pdf)
 
+## Examples 
+
+Use the [examples](examples/) package for illustration of exercises.

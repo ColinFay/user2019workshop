@@ -1,0 +1,62 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# examples
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+This package provides some functions to support the “Hacking RStudio”
+workshop given during useR\! 2019.
+
+## Installation
+
+You can install the development version from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("ColinFay/user2019workshop", subdir = "examples")
+```
+
+## Part 1
+
+[addins.dcf](inst/rstudio/addins.dcf)
+
+  - [Takes a selected word, and look for it on Wikipedia.](R/wik.R)
+
+  - [Inserts a random cat picture in a](R/cat_picture.R).
+
+## Part 2
+
+Snippets are at [inst/snippets.txt](inst/snippets.txt)
+
+  - Create a FALSE snippet that inserts TRUE and vice-versa Create a
+    ggplot skeleton snippet
+
+  - a snippet that inserts a list of library()
+
+  - Create a snippet that add a random {cowsay} to your script
+
+Theme is at [inst/colin.rstheme](inst/colin.rstheme), based on “Subway\_
+Paris (dark).tmTheme” from
+<https://tmtheme-editor.herokuapp.com/#!/editor/theme/Paris%20(dark)>
+
+Things added starts at line
+768
+
+``` r
+rstudioapi::addTheme("inst/colin_theme.rstheme", apply = TRUE, force = TRUE)
+```
+
+This theme:
+
+  - Add a background image to RStudio
+
+  - Change some colors from RStudio
+
+## Part 3
+
+RMarkdown template for twitter scrapping
+[inst/rmarkdown/templates/rtweet/](inst/rmarkdown/templates/rtweet/)

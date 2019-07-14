@@ -1,0 +1,34 @@
+---
+title: "Tweet scrapping"
+author: "Colin Fay"
+date: "2019-07-09"
+output: html_document
+params:
+  search: "#RStats"
+  n: 3000
+  app: "my_twitter_research_app"
+  consumer_key: "XYznzPFOFZR2a39FwWKN1Jp41"
+  consumer_secret: "CtkGEWmSevZqJuKl6HHrBxbCybxI1xGLqrD5ynPd9jG0SoHZbD"
+  access_token: "9551451262-wK2EmA942kxZYIwa5LMKZoQA4Xc2uyIiEwu2YXL"
+  access_secret: "9vpiSGKg1fIPQtxc5d5ESiFlZQpfbknEN1f1m2xe5byw7"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rtweet)
+token <- create_token(
+  app = params$app,
+  consumer_key = params$consumer_key,
+  consumer_secret = params$consumer_secret,
+  access_token = params$access_token,
+  access_secret = params$access_secret
+  )
+rt <- search_tweets(
+  params$search, n = params$n, include_rts = FALSE
+)
+rt
+```
+

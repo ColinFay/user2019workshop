@@ -1,0 +1,4 @@
+name: rtweet
+description: >
+   A template for launching a twitter scrapping
+create_dir: FALSE

@@ -1,0 +1,14 @@
+snippet FALSE
+	TRUE
+
+snippet TRUE
+	FALSE
+
+snippet lib
+	library(golem)
+	library(attempt)
+	library(attachment)
+	library(thinkr)
+
+snippet cowsay
+	`r cowsay::endless_horse()`
