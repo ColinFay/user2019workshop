@@ -1,0 +1,54 @@
+library(httr)
+library(magrittr)
+token <- "09qPXWqFCMBh5nrgYL8-VGCNcRGGjd0y9AAtarbLrdD2ldXH8VEKZq7FJXA6ulbAhyLbGeeayC8MskBuUqVCeVIhJrGGov5rCMxL5GC80q8zW2vABgBeBpLaLvO7cthl"
+baseurl <- "https://api.surveymonkey.com/v3"
+res <- httr::GET(
+  sprintf("%s/surveys", baseurl),
+  add_headers(
+    .headers = c(
+      "Authorization"= sprintf("bearer %s", token),
+      "Content-Type" = "application/json" 
+    )
+  )
+) %>% 
+  content()
+
+id <- res$data[[1]]$id
+
+
+det <- httr::GET(
+  sprintf("%s/surveys/%s/details", baseurl, id),
+  add_headers(
+    .headers = c(
+      "Authorization"= sprintf("bearer %s", token),
+      "Content-Type" = "application/json"
+    )
+  )
+) %>%
+  content()
+
+a <- list()
+
+for (i in 1:ceiling(det$response_count/100)){
+  httr::GET(
+    sprintf("%s/surveys/%s/responses/bulk?page=%s&per_page=100", baseurl, id, i),
+    add_headers(
+      .headers = c(
+        "Authorization"= sprintf("bearer %s", token),
+        "Content-Type" = "application/json"
+      )
+    )
+  ) %>% 
+    content() -> a[[i]]
+}
+
+library(purrr)
+whole <- map(a, "data") %>% flatten()
+`%||%` <- function(a,b) if (is.null(a)) b else a
+map_df(whole, function(x){
+  tibble::tibble(
+    id = x$id,
+    mail = x[["pages"]][[1]][["questions"]][[1]][["answers"]][[1]][["text"]] %||% NA, 
+    score = x[["quiz_results"]][["score"]]
+  )
+}) -> v
